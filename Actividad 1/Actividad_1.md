@@ -19,7 +19,7 @@ A continuación se explicará brevemente el código, el cual consiste en dos par
 1. Publisher
 
    Se empizan importando las librerias requeridas, en este caso paho.mqtt funciona para realizar la conexión con el broker, mientras que psutil te ayuda a obtener la información requerida del equipo
-   ```
+  ```
   import paho.mqtt.client as paho
   from random import randint
   import time
