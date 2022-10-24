@@ -45,7 +45,7 @@ while True:
     (rc, mid) = client.publish("joseduardo/mem",
     str(psutil.virtual_memory()[2]), qos=1)
     (rc, mid) = client.publish("joseduardo/proc",
-    str(listOfRunningProcess[0]), qos=1)
+    str(listOfRunningProcess[0]["name"]), qos=1)
     print(temperature)
     print('The CPU usage is: ', psutil.cpu_percent(4))
     print("Number of cores in system", psutil.cpu_count())
