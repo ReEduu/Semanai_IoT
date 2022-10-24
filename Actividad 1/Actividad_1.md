@@ -25,4 +25,33 @@ A continuación se explicará brevemente el código, el cual consiste en dos par
      import time
      import psutil
      ```
+   
+   Este programa cuenta con dos funciones  
+   on_publis: se ejecuta cuando se publica un nuevo tópico y unicamente te dice el numero de publicación (mid)  
+   getListOfProcessSortedByMemory: te devuelve los procesos ejecutados por el equipo, ordenados del que consume más recursos al que menos 
+   ```
+      def on_publish(client, userdata, mid):
+       print("mid: "+str(mid))
 
+   def getListOfProcessSortedByMemory():
+       '''
+       Get list of running process sorted by Memory Usage
+       '''
+       listOfProcObjects = []
+       # Iterate over the list
+       for proc in psutil.process_iter():
+          try:
+              # Fetch process details as dict
+              pinfo = proc.as_dict(attrs=['pid', 'name', 'username'])
+              pinfo['vms'] = proc.memory_info().vms / (1024 * 1024)
+              # Append dict to list
+              listOfProcObjects.append(pinfo);
+          except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+              pass
+       # Sort list of dict by key vms i.e. memory usage
+       listOfProcObjects = sorted(listOfProcObjects, key=lambda procObj: procObj['vms'], reverse=True)
+       return listOfProcObjects
+    ```
+
+   
+2. Subscriber
