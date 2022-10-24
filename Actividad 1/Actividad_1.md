@@ -60,6 +60,31 @@ A continuación se explicará brevemente el código, el cual consiste en dos par
    client.connect("broker.mqttdashboard.com", 1883)
    client.loop_start()
     ```
+    
+   El programa principal es un loop infinito que cada 30 segundos, publica la información de los topicos solicitados (frecuencia, uso de memoria, nucleos, etc) una vez publicada la información, se imprimen los mismos datos en la consola a manera de verificar que sean correctos
+    ```
+    while True:
+    listOfRunningProcess = getListOfProcessSortedByMemory()
+    (rc, mid) = client.publish("joseduardo/frec",
+    str(psutil.cpu_freq()[0]), qos=1)
+    (rc, mid) = client.publish("joseduardo/uso",
+    str( psutil.cpu_percent(4)), qos=1)
+    (rc, mid) = client.publish("joseduardo/nuc",
+    str(psutil.cpu_count()), qos=1)
+    (rc, mid) = client.publish("joseduardo/mem",
+    str(psutil.virtual_memory()[2]), qos=1)
+    (rc, mid) = client.publish("joseduardo/proc",
+    str(listOfRunningProcess[0]["name"]), qos=1)
+    print(temperature)
+    print('The CPU usage is: ', psutil.cpu_percent(4))
+    print("Number of cores in system", psutil.cpu_count())
+    print("CPU Statistics", psutil.cpu_stats())
+    print("CPU frequency", psutil.cpu_freq())
+    print("CPU load average 1, 5, 15 minutes", psutil.getloadavg())
+    print(psutil.virtual_memory())
+    print(psutil.sensors_battery()) 
+    time.sleep(30)
+    ```
 
    
 2. Subscriber
