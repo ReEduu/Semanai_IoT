@@ -174,8 +174,58 @@ A continuación se explicará brevemente el código, el cual consiste en dos par
               else:
                   print("Lista de procesos más usados : ", procesos)
                   print("\n")
-
-                  print("\n")   
                   procesos.clear()
+
+    ```
+   La parte final del código simplemente consiste en definir las listas, conectarse al broken y subscribirse a cada uno de los tópicos de los compañeros del grupo
+    ``` Python
+   frecuencias = []
+   usos = []
+   nucleos = []
+   memorias = []
+   procesos = []
+   client = paho.Client()
+   client.on_subscribe = on_subscribe
+   client.on_message = on_message
+   #client.username_pw_set("etorresr", "G4t0")
+   client.connect("broker.mqttdashboard.com", 1883)
+   client.subscribe("dafne/frec", qos=1)
+   client.subscribe("miles/frec", qos=1)
+   #client.subscribe("dafne_badillo/frec", qos=1)
+   client.subscribe("victor/frec", qos=1)
+   client.subscribe("joseduardo/frec", qos=1)
+   client.subscribe("alonso/frec", qos=1)
+   client.subscribe("anthony/frec", qos=1)
+   client.subscribe("dafne/nuc", qos=1)
+   client.subscribe("dafne/uso", qos=1)
+   client.subscribe("dafne/mem", qos=1)
+   client.subscribe("dafne/proc", qos=1)
+   client.subscribe("miles/nuc", qos=1)
+   client.subscribe("miles/uso", qos=1)
+   client.subscribe("miles/mem", qos=1)
+   client.subscribe("miles/proc", qos=1)
+   client.subscribe("dafne_badillo/nuc", qos=1)
+   #client.subscribe("dafne_badillo/uso", qos=1)
+   #client.subscribe("dafne_badillo/mem", qos=1)
+   client.subscribe("dafne_badillo/proc", qos=1)
+   client.subscribe("victor/nuc", qos=1)
+   client.subscribe("victor/uso", qos=1)
+   client.subscribe("victor/mem", qos=1)
+   client.subscribe("victor/proc", qos=1)
+   client.subscribe("joseduardo/nuc", qos=1)
+   client.subscribe("joseduardo/uso", qos=1)
+   client.subscribe("joseduardo/mem", qos=1)
+   client.subscribe("joseduardo/proc", qos=1)
+   client.subscribe("alonso/nuc", qos=1)
+   client.subscribe("alonso/uso", qos=1)
+   client.subscribe("alonso/mem", qos=1)
+   client.subscribe("alonso/proc", qos=1)
+   client.subscribe("anthony/nuc", qos=1)
+   client.subscribe("anthony/uso", qos=1)
+   client.subscribe("anthony/mem", qos=1)
+   #client.subscribe("anthony/proc", qos=1)
+
+
+   client.loop_forever()
 
     ```
