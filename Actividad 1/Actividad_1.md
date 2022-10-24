@@ -237,9 +237,12 @@ Al ejecutar el programa se obtuvo la siguiente tabla
 | ----------- | ----------- |-----------  |-----------  |
 | Frecuencia  | 1601        | 2808        | 2552.87     |
 | Nucleos     | 2           | 8           | 2           |
-| Uso         | 3           | 25.18       | 3           |
+| Uso         | 3           | 25.18       | 12.4        |
 | Memoria     | 56.68       | 74.2        | 32.2        |
 
 Lista de procesos: code, name, firefox.exe, msedge.exe, taskhostw.exe, code, name
 
-Para finaliz
+Como se puede observar hay computadoras que tienen pocos nucleos, así como una baja frecuencia, sin embargo el promedio del uso del CPU es bastante bajo, mientras que el de la memoria es algo alto. Por ultimo en la lista de procesos, no hay ningun patrón en especifico, simplemente se repite visual studio code en dos ocasiones.  
+
+Para finalizar se adjunta el link al video con el programa corriendo
+https://www.youtube.com/watch?v=Aae3DDBW1TE
