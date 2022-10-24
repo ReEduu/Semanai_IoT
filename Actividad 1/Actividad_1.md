@@ -26,6 +26,5 @@ A continuación se explicará brevemente el código, el cual consiste en dos par
   import time
   import psutil
   ```
-   
 2. Subscriber
 
