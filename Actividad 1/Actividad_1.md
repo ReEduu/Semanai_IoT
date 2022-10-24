@@ -62,7 +62,7 @@ A continuación se explicará brevemente el código, el cual consiste en dos par
     ```
     
    El programa principal es un loop infinito que cada 30 segundos, publica la información de los topicos solicitados (frecuencia, uso de memoria, nucleos, etc) una vez publicada la información, se imprimen los mismos datos en la consola a manera de verificar que sean correctos
-    ```
+    ```Python
     while True:
     listOfRunningProcess = getListOfProcessSortedByMemory()
     (rc, mid) = client.publish("joseduardo/frec",
@@ -88,3 +88,94 @@ A continuación se explicará brevemente el código, el cual consiste en dos par
 
    
 2. Subscriber
+
+
+   En el caso del código del subscriber, este es el más trabajado, debido a que se necesitaban obtener los datos del broker y con ello calcular las metrícas solicitadas
+   
+   Empieza utilizando igual que en el código pasado, la libería paho.mqtt para realizar la conexión, en este caso use statics para calcular el promedio de una lista con una función
+     ``` Python
+     import paho.mqtt.client as paho
+     import statistics as stats
+     ```
+   
+   Este programa tambien cuenta con dos funciones  
+   on_subscribe: se ejecuta cada vez que es suscrito a un nuevo topico, generalmente al inicio de la ejecución
+   on_message: este es el proceso más importante. Se ejecuta cada que se recibe un nuevo dato de los tópicos suscritos. En este caso lo que hago es que dependiendo del tópico del dato, este realizará un proceso u otro, aunque en general es casi lo mismo, con excepción de cuando se recibe un proceso, ya que no se tienen que calcular la media, maximo y minimo, sólo guardarlo en una lista. El proceso a seguir es el siguiente: 
+   - Verificamos el topico del dato
+   - Convertimos el dato recibido a String
+   - Separamos la información que necesitamos con split y convertimos a flotante
+   - Si la longitud del arreglo es menor a 7 entonces añadimos el elemento a su lista correspondiente
+   - En caso contrario imprimimos la frecuencia maxima, minima y promedio y limpiamos la lista
+   - El proceso es el mismo con frecuencia, memoria, uso de CPU y nucleos
+   ``` Python
+      def on_subscribe(client, userdata, mid, granted_qos):
+          print("Subscribed: "+str(mid)+" "+str(granted_qos))
+
+      def on_message(client, userdata, msg):
+          if "frec" in msg.topic:
+              frec = (str(msg.payload))
+              frec = float(frec.split("'")[1])
+              if(len(frecuencias)<6):
+                  frecuencias.append(frec) 
+                  #print(frec)
+              else:
+                  print("Promedio Frecuencia: ",stats.mean(frecuencias))
+                  print("Maxima Frecuencia: ",max(frecuencias))
+                  print("Minima Frecuencia: ",min(frecuencias))
+                  print("\n")   
+                  frecuencias.clear()
+
+          elif "nuc" in msg.topic:
+              nucleo = (str(msg.payload))
+              nucleo = float(nucleo.split("'")[1])
+              if(len(nucleos)<7):
+                  nucleos.append(nucleo) 
+                 # print(nucleo)
+              else:
+                  print("Promedio: de nucleos ",stats.mean(nucleos))
+                  print("Maximo numero de nucleos: ",max(nucleos))
+                  print("Minimo numero de nucleos: ",min(nucleos))
+                  print("\n")   
+                  nucleos.clear()
+
+
+          elif "uso" in msg.topic:
+              uso = (str(msg.payload))
+              uso = float(uso.split("'")[1])
+              if(len(usos)<6):
+                  usos.append(uso) 
+                  #print(uso)
+              else:
+                  print("Promedio de uso: ",stats.mean(usos))
+                  print("Porcentaje de uso maximo: ",max(usos))
+                  print("Porcentaje de uso minimo: ",min(usos))
+                  print("\n")   
+                  usos.clear()
+
+          elif "mem" in msg.topic:
+              mem = (str(msg.payload))
+              mem = float(mem.split("'")[1])
+              if(len(memorias)<6):
+                  memorias.append(mem) 
+                  #print(mem)
+              else:
+                  print("Promedio de porcentaje de memoria : ",stats.mean(memorias))
+                  print("Maximo porcentaje de memoria : ",max(memorias))
+                  print("Minimo porcentaje de memoria : ",min(memorias))
+                  print("\n")   
+                  memorias.clear()
+
+          elif "proc" in msg.topic:    
+              proc = (str(msg.payload))
+              proc = proc.split("'")[1]
+              if(len(procesos)<7):
+                  procesos.append(proc) 
+                  #print(mem)
+              else:
+                  print("Lista de procesos más usados : ", procesos)
+                  print("\n")
+
+                  print("\n")   
+                  procesos.clear()
+
+    ```
