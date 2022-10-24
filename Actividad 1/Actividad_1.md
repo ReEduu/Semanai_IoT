@@ -29,7 +29,7 @@ A continuación se explicará brevemente el código, el cual consiste en dos par
    Este programa cuenta con dos funciones  
    on_publis: se ejecuta cuando se publica un nuevo tópico y unicamente te dice el numero de publicación (mid)  
    getListOfProcessSortedByMemory: te devuelve los procesos ejecutados por el equipo, ordenados del que consume más recursos al que menos 
-   ```
+   ``` Python
       def on_publish(client, userdata, mid):
        print("mid: "+str(mid))
 
@@ -51,6 +51,14 @@ A continuación se explicará brevemente el código, el cual consiste en dos par
        # Sort list of dict by key vms i.e. memory usage
        listOfProcObjects = sorted(listOfProcObjects, key=lambda procObj: procObj['vms'], reverse=True)
        return listOfProcObjects
+    ```
+    
+   Se realiza la conexión con el broker, en este caso se hace uso del puerto 1883 que es libre  
+    ``` Python
+   client = paho.Client()
+   client.on_publish = on_publish
+   client.connect("broker.mqttdashboard.com", 1883)
+   client.loop_start()
     ```
 
    
