@@ -28,9 +28,32 @@ A continuación se detalla el proceso llevado a cabo
  
   De lado de Python, fue necesario realizar la aplicación que envia datos de la computadora a las bases de los demás compañeros. A continuación se explica el código de uno de esos programas 
   
+  Las librerias principales fueron pyrebase para realizar la conexión con la base de datos de Firebase, y psutil para obtener la información de la PC. Tambien se utilizo time para realizar el sleep de 2 minutos
+  
      ``` Python
-     import paho.mqtt.client as paho
-     from random import randint
+     import pyrebase
      import time
      import psutil
+     ```
+  El programa sólo tiene una función y es la misma que se utilizó en la actividad pasada. Devuelve una lista de procesos, ordenados del que consume más memoria al que consume menos
+  
+     ``` Python
+     def getListOfProcessSortedByMemory():
+     '''
+     Get list of running process sorted by Memory Usage
+     '''
+     listOfProcObjects = []
+     # Iterate over the list
+     for proc in psutil.process_iter():
+        try:
+            # Fetch process details as dict
+            pinfo = proc.as_dict(attrs=['pid', 'name', 'username'])
+            pinfo['vms'] = proc.memory_info().vms / (1024 * 1024)
+            # Append dict to list
+            listOfProcObjects.append(pinfo);
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            pass
+     # Sort list of dict by key vms i.e. memory usage
+     listOfProcObjects = sorted(listOfProcObjects, key=lambda procObj: procObj['vms'], reverse=True)
+     return listOfProcObjects
      ```
