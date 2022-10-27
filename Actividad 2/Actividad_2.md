@@ -28,8 +28,9 @@ A continuación se detalla el proceso llevado a cabo
  
   De lado de Python, fue necesario realizar la aplicación que envia datos de la computadora a las bases de los demás compañeros. A continuación se explica el código de uno de esos programas 
   
-  ``Python  
-    import pyrebase
-    import time
-    import psutil
-  ``
+     ``` Python
+     import paho.mqtt.client as paho
+     from random import randint
+     import time
+     import psutil
+     ```
