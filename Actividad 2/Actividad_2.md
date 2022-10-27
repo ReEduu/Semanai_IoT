@@ -26,4 +26,10 @@ A continuación se detalla el proceso llevado a cabo
   
 - **Python**
  
-  Para 
+  De lado de Python, fue necesario realizar la aplicación que envia datos de la computadora a las bases de los demás compañeros. A continuación se explica el código de uno de esos programas 
+  
+  ``Python  
+    import pyrebase
+    import time
+    import psutil
+  ``
