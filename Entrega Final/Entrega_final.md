@@ -18,4 +18,7 @@ Para este proyectto las variables fisicas a medir fueron:
 
 En el siguiente diagrama se muestran las conexiones realizadas con el ESP32
 
-![Conexiones realizadas](./20221026_172338.jpg)
+![Diagrama de conexiones realizadas](./Semana_I.png)}
+
+
+![Circuito completo](./20221026_172338.jpg)
