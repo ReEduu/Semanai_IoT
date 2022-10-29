@@ -74,7 +74,7 @@ Para realizar la conexión con la base de datos, se uso el componente de Firebas
 
 **Código de Arduino**
 
-``` Arduino
+``` C
 #include "DHT.h"
 
 #define DHTPIN 4     // Digital pin connected to the DHT sensor
