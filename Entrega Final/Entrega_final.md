@@ -42,12 +42,42 @@ Tambien se enlistan los pines usados
 
 **Base de datos de Firebase**
 
-Para la base de datos se utilizó la misma creada en 
+Para la base de datos se utilizó la misma creada en la actividad pasada. Donde tenemos los siguientes valores almacenados:
+
+- Digito (String)
+- PWM (String)
+- Distancia (Numero)
+- Humedad (Numero)
+- Movimiento (Booleano)
+
+En el caso de digito y PWM, estos son cadenas, ya que App Inventor al mandar la información, automaticamente convierte los valores enteros en cadenas, esto se soluciona en el código de Arduino convirtiendo las cadenas en enteros 
+
+Esta base de datos es a tiempo real, por lo que se actualiza cada vez que se recibe o cambia un valor, lo cual es util para mostrar el funcionamiento. Si se quiere ahondar un poco más, en el reporte de la actividad 2 se especifican los pasos a seguir para crearla
+
+**App Inventor**
+
+Se utilizó App Inventor para crear una aplicación que funcione como interfaz para el envio y recibo de la información recopilada en la base de datos. Se crearon las siguientes pantallas:
+
+- Pantalla de Inicio
+  
+  Es la pantalla inicial, donde se puede seleccionar con dos botones, tanto mediciones como envio de datos
+  
+- Mediciones
+  
+  Aqui se muestra una imagen de los tres sensores junto con su respectiva información, la cual se actualiza cada vez que un dato cambia en la base de datos
+  
+- Envio de datos
+
+  En la ultima pantalla se encuentra la imagen del LED y el display 7 segmentos, junto a una caja de texto donde introducir el valor a mandar. La información en las cajas de texto, se manda cada segundo gracias a que se añadio un timer como componente
+  
+Para realizar la conexión con la base de datos, se uso el componente de Firebase, incluido en App Inventor como función experimental
+
+**Código de Arduino**
 
 **Resultados**
 
 Al finalizar la actividad se desarrolló un sistema capaz de mandar datos capturados por 3 distintos sensores desde el ESP32 hasta una base de datos en Firebase, así como de recibir dos datos de la misma base, con el fin de cambiar la intensidad de un LED y el digito de un display. Asimismo, desde una aplicación movil creada en App Inventor, se pudieron mostrar las mediciones realizadas y mandar los datos para cambiar la intensidad de un LED y el digito del Display.
 
-El funcionamiento fue mostrado en clase y a continuación se muestra una imagen con el sistema realizado 
+El funcionamiento fue mostrado en clase y a continuación se muestra una imagen con el sistema del ESP32 realizado
 
 ![Circuito completo](./20221026_172338.jpg)
