@@ -25,5 +25,29 @@ En el siguiente diagrama se muestran las conexiones realizadas con el ESP32
 
 ![Diagrama de conexiones realizadas](./Semana_I.png)}
 
+Tambien se enlistan los pines usados 
+
+- D15-> Trig del sensor ultrasonico
+- D2--> Echo del sensor ultrasonico
+- D4 --> Segundo pin del sensor de humedad
+- RX2 --> LED
+- D5 --> b del display
+- D18 --> a del display
+- D19 --> c del display
+- RX0 --> d del display
+- TX0 --> e del display
+- D22 --> g del display
+- D23 --> f del display
+- D12 --> pin de enmedio del sensor PIR
+
+**Base de datos de Firebase**
+
+Para la base de datos se utilizó la misma creada en 
+
+**Resultados**
+
+Al finalizar la actividad se desarrolló un sistema capaz de mandar datos capturados por 3 distintos sensores desde el ESP32 hasta una base de datos en Firebase, así como de recibir dos datos de la misma base, con el fin de cambiar la intensidad de un LED y el digito de un display. Asimismo, desde una aplicación movil creada en App Inventor, se pudieron mostrar las mediciones realizadas y mandar los datos para cambiar la intensidad de un LED y el digito del Display.
+
+El funcionamiento fue mostrado en clase y a continuación se muestra una imagen con el sistema realizado 
 
 ![Circuito completo](./20221026_172338.jpg)
