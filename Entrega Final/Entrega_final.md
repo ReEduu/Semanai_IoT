@@ -78,7 +78,16 @@ A continuación se explica brevemente las partes del código de Arduino, cargado
 
 El código, realiza las siguientes tareas
 
-- Realizar la conexión al WiFi del TEC
+- Realizar la conexión al WiFi del TEC, la cual se realiza al inicio del set up y para lo que se ocupa la libreria WiFi.h
+- Realizar la conexión a Firebase, para ello se utiliza la libreria Firebase_ESP_Client.h y se realiza despues de la conexión a internet
+- Realizar y mandar cada una de las mediciones
+
+  - Humedad: hace uso de la ibreria DHT.h
+  - Movimiento: realiza el proceso para realizar las mediciones según la configuración dada
+  - Distancia: se realizan los calculos necesarios para obtener las mediciones en cm según los datos del sensor
+
+  Cada una de estas variables, una vez medidas, se mandan continuamente a la base de datos con ayuda de la función Firebase.RTDB.set (float, boolean o string)
+- Recuperar datos de la base de datos
 
 ``` C
 #include "DHT.h"
