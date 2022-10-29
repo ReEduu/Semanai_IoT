@@ -16,6 +16,11 @@ Para este proyectto las variables fisicas a medir fueron:
 - Humedad (Porcentaje de humedad)
 - Distancia (en cm)
 
+Tambien se utilizaron los siguientes componentes para mostrar el envio de datos desde la app y su posterior recibimiento en el ESP32
+
+- Un LED que varia su intensidad según la señal PWM
+- Un display 7 segmentos que varia su digito según el numero guardado en la base
+
 En el siguiente diagrama se muestran las conexiones realizadas con el ESP32
 
 ![Diagrama de conexiones realizadas](./Semana_I.png)}
