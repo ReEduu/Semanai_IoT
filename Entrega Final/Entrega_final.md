@@ -74,6 +74,12 @@ Para realizar la conexión con la base de datos, se uso el componente de Firebas
 
 **Código de Arduino**
 
+A continuación se explica brevemente las partes del código de Arduino, cargado al ESP32
+
+El código, realiza las siguientes tareas
+
+- Realizar la conexión al WiFi del TEC
+
 ``` C
 #include "DHT.h"
 
@@ -116,7 +122,7 @@ DHT dht(DHTPIN, DHTTYPE);
 // Insert your network credentials
 const char* ssid = "Tec"; 
 #define EAP_IDENTITY "A01732165@tec.mx"
-#define EAP_PASSWORD "!1523LDje"
+#define EAP_PASSWORD ""
 
 // Insert Firebase project API Key
 #define API_KEY "AIzaSyDEcTnQHxm1X7LbhUYpbC8NKzY_Y4HuLc0"
