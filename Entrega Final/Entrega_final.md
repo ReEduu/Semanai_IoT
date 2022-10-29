@@ -87,7 +87,19 @@ El código, realiza las siguientes tareas
   - Distancia: se realizan los calculos necesarios para obtener las mediciones en cm según los datos del sensor
 
   Cada una de estas variables, una vez medidas, se mandan continuamente a la base de datos con ayuda de la función Firebase.RTDB.set (float, boolean o string)
-- Recuperar datos de la base de datos
+- Recuperar y mostrar los siguientes datos de la base de datos:
+
+En ambos casos se utiliza la función Firebase.RTDB.getString para recuperar la información, una vez recuperada se convierte a entero para mandar el valor a sus respectivas funciones 
+  
+  - PWM
+  
+  Se toma el valor de la base de datos, el cual se utiliza para modificar el valor del duty cycle del PWM, para modificar la intensidad de un LED conectado al pin RX2. Para ello antes e tuvo que realizar la configuración del PWM
+  
+  - Digito 
+  
+  Se toma el valor y se manda a la función segment_display, la cual cambia las combinaciones de voltajes, para mostrar un digito u otro en el display de 7 segmentos. En este caso la combinación es la de un display de catodo comun
+
+Para comprobar el funcionamiento se puede abrir la terminal serial, la cual dará distintos mensajes, dependiendo de si algo sale de manera incorrecta
 
 ``` C
 #include "DHT.h"
